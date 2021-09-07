@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="adresse">
+      <h2 data-cy="adresseDetailsHeading"><span jhiTranslate="gestionSApp.adresse.detail.title">Adresse</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ adresse.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.adresse.adresse1">Adresse 1</span></dt>
+        <dd>
+          <span>{{ adresse.adresse1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.adresse.adresse2">Adresse 2</span></dt>
+        <dd>
+          <span>{{ adresse.adresse2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.adresse.ville">Ville</span></dt>
+        <dd>
+          <span>{{ adresse.ville }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.adresse.codePostal">Code Postal</span></dt>
+        <dd>
+          <span>{{ adresse.codePostal }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.adresse.pays">Pays</span></dt>
+        <dd>
+          <span>{{ adresse.pays }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/adresse', adresse.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

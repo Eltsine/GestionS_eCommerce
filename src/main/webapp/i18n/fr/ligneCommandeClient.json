@@ -1,0 +1,27 @@
+{
+  "gestionSApp": {
+    "ligneCommandeClient": {
+      "home": {
+        "title": "LigneCommandeClients",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Ligne Commande Client",
+        "createOrEditLabel": "Créer ou éditer un Ligne Commande Client",
+        "notFound": "Aucun Ligne Commande Client trouvé"
+      },
+      "created": "Un nouveau Ligne Commande Client a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Ligne Commande Client avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Ligne Commande Client avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Ligne Commande Client {{ id }} ?"
+      },
+      "detail": {
+        "title": "Ligne Commande Client"
+      },
+      "id": "ID",
+      "quantite": "Quantite",
+      "prixUnitaire": "Prix Unitaire",
+      "article": "Article",
+      "commandeClient": "Commande Client"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "gestionSApp": {
+    "mvtStk": {
+      "home": {
+        "title": "MvtStks",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Mvt Stk",
+        "createOrEditLabel": "Créer ou éditer un Mvt Stk",
+        "notFound": "Aucun Mvt Stk trouvé"
+      },
+      "created": "Un nouveau Mvt Stk a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Mvt Stk avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Mvt Stk avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Mvt Stk {{ id }} ?"
+      },
+      "detail": {
+        "title": "Mvt Stk"
+      },
+      "id": "ID",
+      "dateMvt": "Date Mvt",
+      "quantite": "Quantite",
+      "typeMvtStk": "Type Mvt Stk",
+      "entreprise": "Entreprise"
+    }
+  }
+}

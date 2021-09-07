@@ -28,6 +28,7 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
+import { NbLayoutModule, NbSidebarModule, NbThemeModule } from '@nebular/theme';
 
 @NgModule({
   imports: [
@@ -41,6 +42,9 @@ import { ErrorComponent } from './layouts/error/error.component';
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: false }),
     HttpClientModule,
     NgxWebstorageModule.forRoot({ prefix: 'jhi', separator: '-', caseSensitive: true }),
+    NbThemeModule.forRoot(),
+    NbLayoutModule,
+    NbSidebarModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

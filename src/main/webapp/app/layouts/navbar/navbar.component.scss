@@ -36,7 +36,8 @@ Navbar
 
   .navbar-toggler {
     &:hover {
-      color: $navbar-dark-hover-color;
+      //color: #3e8acc;
+      text-decoration: none;
     }
   }
 }

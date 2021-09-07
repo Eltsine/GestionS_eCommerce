@@ -1,0 +1,64 @@
+{
+  "name": "Entreprise",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "codeFiscal",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "photo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "numTe",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "siteWeb",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "personnel",
+      "otherEntityRelationshipName": "entreprise",
+      "relationshipName": "personnel"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "article",
+      "otherEntityRelationshipName": "entreprise",
+      "relationshipName": "article"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "adresse",
+      "otherEntityRelationshipName": "entreprise",
+      "relationshipName": "adresse"
+    }
+  ],
+  "entityTableName": "entreprise",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210906091021"
+}

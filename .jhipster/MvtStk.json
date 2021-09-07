@@ -1,0 +1,36 @@
+{
+  "name": "MvtStk",
+  "fields": [
+    {
+      "fieldName": "dateMvt",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "quantite",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "typeMvtStk",
+      "fieldType": "TypeMvtStk",
+      "fieldValues": "ENTREE,SORTIE"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "article",
+      "otherEntityRelationshipName": "utilisateur",
+      "relationshipName": "entreprise"
+    }
+  ],
+  "entityTableName": "mvt_stk",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210906091024"
+}

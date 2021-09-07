@@ -1,0 +1,114 @@
+<div>
+  <h2 id="page-heading" data-cy="MvtStkHeading">
+    <span jhiTranslate="gestionSApp.mvtStk.home.title">Mvt Stks</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="gestionSApp.mvtStk.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-mvt-stk"
+        [routerLink]="['/mvt-stk/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="gestionSApp.mvtStk.home.createLabel"> Create a new Mvt Stk </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="mvtStks?.length === 0">
+    <span jhiTranslate="gestionSApp.mvtStk.home.notFound">No mvtStks found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="mvtStks && mvtStks.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead class="text-basic">
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dateMvt">
+            <span jhiTranslate="gestionSApp.mvtStk.dateMvt">Date Mvt</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="quantite">
+            <span jhiTranslate="gestionSApp.mvtStk.quantite">Quantite</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="typeMvtStk">
+            <span jhiTranslate="gestionSApp.mvtStk.typeMvtStk">Type Mvt Stk</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="entreprise.id">
+            <span jhiTranslate="gestionSApp.mvtStk.entreprise">Entreprise</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody class="text-basic">
+        <tr *ngFor="let mvtStk of mvtStks; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/mvt-stk', mvtStk.id, 'view']">{{ mvtStk.id }}</a>
+          </td>
+          <td>{{ mvtStk.dateMvt | formatMediumDatetime }}</td>
+          <td>{{ mvtStk.quantite }}</td>
+          <td jhiTranslate="{{ 'gestionSApp.TypeMvtStk.' + mvtStk.typeMvtStk }}">{{ mvtStk.typeMvtStk }}</td>
+          <td>
+            <div *ngIf="mvtStk.entreprise">
+              <a [routerLink]="['/article', mvtStk.entreprise?.id, 'view']">{{ mvtStk.entreprise?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/mvt-stk', mvtStk.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/mvt-stk', mvtStk.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(mvtStk)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="mvtStks && mvtStks.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

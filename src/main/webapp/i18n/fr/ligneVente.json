@@ -1,0 +1,27 @@
+{
+  "gestionSApp": {
+    "ligneVente": {
+      "home": {
+        "title": "LigneVentes",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Ligne Vente",
+        "createOrEditLabel": "Créer ou éditer un Ligne Vente",
+        "notFound": "Aucun Ligne Vente trouvé"
+      },
+      "created": "Un nouveau Ligne Vente a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Ligne Vente avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Ligne Vente avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Ligne Vente {{ id }} ?"
+      },
+      "detail": {
+        "title": "Ligne Vente"
+      },
+      "id": "ID",
+      "quantite": "Quantite",
+      "prixUnitaire": "Prix Unitaire",
+      "article": "Article",
+      "vente": "Vente"
+    }
+  }
+}

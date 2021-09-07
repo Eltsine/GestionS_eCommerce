@@ -1,0 +1,36 @@
+{
+  "name": "Adresse",
+  "fields": [
+    {
+      "fieldName": "adresse1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "adresse2",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ville",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "codePostal",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "pays",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "adresse",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210906091033"
+}

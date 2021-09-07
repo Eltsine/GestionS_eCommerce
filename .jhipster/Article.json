@@ -1,0 +1,78 @@
+{
+  "name": "Article",
+  "fields": [
+    {
+      "fieldName": "codeArticle",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "designation",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "prixUnitaireHT",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "prixUnitaireTtc",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "tauxTva",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "photo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "mvtStk",
+      "otherEntityRelationshipName": "entreprise",
+      "relationshipName": "utilisateur"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "entreprise",
+      "otherEntityRelationshipName": "article",
+      "relationshipName": "entreprise"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "ligneCommandeClient",
+      "otherEntityRelationshipName": "article",
+      "relationshipName": "ligneCommandeClient"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "ligneCommandeFournisseur",
+      "otherEntityRelationshipName": "article",
+      "relationshipName": "ligneCommandeFournisseur"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "ligneVente",
+      "otherEntityRelationshipName": "article",
+      "relationshipName": "ligneVente"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "categorie",
+      "otherEntityRelationshipName": "article",
+      "relationshipName": "categorie"
+    }
+  ],
+  "entityTableName": "article",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210906091022"
+}

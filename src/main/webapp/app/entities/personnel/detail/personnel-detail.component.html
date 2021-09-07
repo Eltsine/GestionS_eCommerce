@@ -1,0 +1,73 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="personnel">
+      <h2 data-cy="personnelDetailsHeading"><span jhiTranslate="gestionSApp.personnel.detail.title">Personnel</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ personnel.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.personnel.nom">Nom</span></dt>
+        <dd>
+          <span>{{ personnel.nom }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.personnel.prenom">Prenom</span></dt>
+        <dd>
+          <span>{{ personnel.prenom }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.personnel.dateNaissance">Date Naissance</span></dt>
+        <dd>
+          <span>{{ personnel.dateNaissance | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.personnel.email">Email</span></dt>
+        <dd>
+          <span>{{ personnel.email }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.personnel.motDePass">Mot De Pass</span></dt>
+        <dd>
+          <span>{{ personnel.motDePass }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.personnel.photo">Photo</span></dt>
+        <dd>
+          <div *ngIf="personnel.photo">
+            <a (click)="openFile(personnel.photo, personnel.photoContentType)">
+              <img
+                [src]="'data:' + personnel.photoContentType + ';base64,' + personnel.photo"
+                style="max-width: 100%"
+                alt="personnel image"
+              />
+            </a>
+            {{ personnel.photoContentType }}, {{ byteSize(personnel.photo) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.personnel.adresse">Adresse</span></dt>
+        <dd>
+          <div *ngIf="personnel.adresse">
+            <a [routerLink]="['/adresse', personnel.adresse?.id, 'view']">{{ personnel.adresse?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.personnel.entreprise">Entreprise</span></dt>
+        <dd>
+          <div *ngIf="personnel.entreprise">
+            <a [routerLink]="['/entreprise', personnel.entreprise?.id, 'view']">{{ personnel.entreprise?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/personnel', personnel.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

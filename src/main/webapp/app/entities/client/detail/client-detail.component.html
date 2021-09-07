@@ -1,0 +1,59 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="client">
+      <h2 data-cy="clientDetailsHeading"><span jhiTranslate="gestionSApp.client.detail.title">Client</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ client.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.client.nom">Nom</span></dt>
+        <dd>
+          <span>{{ client.nom }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.client.prenom">Prenom</span></dt>
+        <dd>
+          <span>{{ client.prenom }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.client.mail">Mail</span></dt>
+        <dd>
+          <span>{{ client.mail }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.client.numTel">Num Tel</span></dt>
+        <dd>
+          <span>{{ client.numTel }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.client.photo">Photo</span></dt>
+        <dd>
+          <div *ngIf="client.photo">
+            <a (click)="openFile(client.photo, client.photoContentType)">
+              <img [src]="'data:' + client.photoContentType + ';base64,' + client.photo" style="max-width: 100%" alt="client image" />
+            </a>
+            {{ client.photoContentType }}, {{ byteSize(client.photo) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.client.adresse">Adresse</span></dt>
+        <dd>
+          <div *ngIf="client.adresse">
+            <a [routerLink]="['/adresse', client.adresse?.id, 'view']">{{ client.adresse?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/client', client.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

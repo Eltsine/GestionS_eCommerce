@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="ligneCommandeClient">
+      <h2 data-cy="ligneCommandeClientDetailsHeading">
+        <span jhiTranslate="gestionSApp.ligneCommandeClient.detail.title">Ligne Commande Client</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ ligneCommandeClient.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.ligneCommandeClient.quantite">Quantite</span></dt>
+        <dd>
+          <span>{{ ligneCommandeClient.quantite }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.ligneCommandeClient.prixUnitaire">Prix Unitaire</span></dt>
+        <dd>
+          <span>{{ ligneCommandeClient.prixUnitaire }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.ligneCommandeClient.commandeClient">Commande Client</span></dt>
+        <dd>
+          <div *ngIf="ligneCommandeClient.commandeClient">
+            <a [routerLink]="['/commande-client', ligneCommandeClient.commandeClient?.id, 'view']">{{
+              ligneCommandeClient.commandeClient?.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/ligne-commande-client', ligneCommandeClient.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -9,14 +9,14 @@
 
   <div class="table-responsive">
     <table id="healthCheck" class="table table-striped" aria-describedby="health-page-heading">
-      <thead>
+      <thead class="text-basic">
         <tr>
           <th scope="col" jhiTranslate="health.table.service">Service Name</th>
           <th scope="col" class="text-center" jhiTranslate="health.table.status">Status</th>
           <th scope="col" class="text-center" jhiTranslate="health.details.details">Details</th>
         </tr>
       </thead>
-      <tbody *ngIf="health">
+      <tbody *ngIf="health" class="text-basic">
         <tr *ngFor="let componentHealth of health.components | keyvalue">
           <td>
             {{ 'health.indicator.' + componentHealth.key | translate }}

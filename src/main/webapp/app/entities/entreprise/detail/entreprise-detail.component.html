@@ -1,0 +1,71 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="entreprise">
+      <h2 data-cy="entrepriseDetailsHeading"><span jhiTranslate="gestionSApp.entreprise.detail.title">Entreprise</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ entreprise.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.entreprise.nom">Nom</span></dt>
+        <dd>
+          <span>{{ entreprise.nom }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.entreprise.description">Description</span></dt>
+        <dd>
+          <span>{{ entreprise.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.entreprise.codeFiscal">Code Fiscal</span></dt>
+        <dd>
+          <span>{{ entreprise.codeFiscal }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.entreprise.photo">Photo</span></dt>
+        <dd>
+          <div *ngIf="entreprise.photo">
+            <a (click)="openFile(entreprise.photo, entreprise.photoContentType)">
+              <img
+                [src]="'data:' + entreprise.photoContentType + ';base64,' + entreprise.photo"
+                style="max-width: 100%"
+                alt="entreprise image"
+              />
+            </a>
+            {{ entreprise.photoContentType }}, {{ byteSize(entreprise.photo) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.entreprise.email">Email</span></dt>
+        <dd>
+          <span>{{ entreprise.email }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.entreprise.numTe">Num Te</span></dt>
+        <dd>
+          <span>{{ entreprise.numTe }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.entreprise.siteWeb">Site Web</span></dt>
+        <dd>
+          <span>{{ entreprise.siteWeb }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.entreprise.adresse">Adresse</span></dt>
+        <dd>
+          <div *ngIf="entreprise.adresse">
+            <a [routerLink]="['/adresse', entreprise.adresse?.id, 'view']">{{ entreprise.adresse?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/entreprise', entreprise.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

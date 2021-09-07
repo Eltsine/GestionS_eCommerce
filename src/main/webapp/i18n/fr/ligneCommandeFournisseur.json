@@ -1,0 +1,27 @@
+{
+  "gestionSApp": {
+    "ligneCommandeFournisseur": {
+      "home": {
+        "title": "LigneCommandeFournisseurs",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Ligne Commande Fournisseur",
+        "createOrEditLabel": "Créer ou éditer un Ligne Commande Fournisseur",
+        "notFound": "Aucun Ligne Commande Fournisseur trouvé"
+      },
+      "created": "Un nouveau Ligne Commande Fournisseur a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Ligne Commande Fournisseur avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Ligne Commande Fournisseur avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Ligne Commande Fournisseur {{ id }} ?"
+      },
+      "detail": {
+        "title": "Ligne Commande Fournisseur"
+      },
+      "id": "ID",
+      "quantite": "Quantite",
+      "prixUnitaire": "Prix Unitaire",
+      "article": "Article",
+      "commandeFournisseur": "Commande Fournisseur"
+    }
+  }
+}

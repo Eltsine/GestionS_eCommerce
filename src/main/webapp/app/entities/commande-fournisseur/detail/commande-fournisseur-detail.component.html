@@ -1,0 +1,44 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="commandeFournisseur">
+      <h2 data-cy="commandeFournisseurDetailsHeading">
+        <span jhiTranslate="gestionSApp.commandeFournisseur.detail.title">Commande Fournisseur</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ commandeFournisseur.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.commandeFournisseur.code">Code</span></dt>
+        <dd>
+          <span>{{ commandeFournisseur.code }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.commandeFournisseur.dateCommande">Date Commande</span></dt>
+        <dd>
+          <span>{{ commandeFournisseur.dateCommande | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.commandeFournisseur.fournisseur">Fournisseur</span></dt>
+        <dd>
+          <div *ngIf="commandeFournisseur.fournisseur">
+            <a [routerLink]="['/fournisseur', commandeFournisseur.fournisseur?.id, 'view']">{{ commandeFournisseur.fournisseur?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/commande-fournisseur', commandeFournisseur.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,147 @@
+entity Personnel{
+	nom String,
+    prenom String,
+    dateNaissance Instant,
+    email String,
+    motDePass String,
+    photo ImageBlob
+}
+
+entity Entreprise{
+	nom String,
+    description String,
+    codeFiscal String,
+    photo ImageBlob,
+    email String,
+    numTe String,
+    siteWeb String
+
+}
+
+entity Article{
+    codeArticle String,
+    designation String,
+    prixUnitaireHT BigDecimal,
+    prixUnitaireTtc BigDecimal,
+    tauxTva BigDecimal,
+    photo ImageBlob
+
+}
+
+entity Categorie{
+	code String,
+    designation String
+
+}
+
+
+entity MvtStk{
+	dateMvt Instant,
+	quantite BigDecimal
+    typeMvtStk TypeMvtStk
+}
+
+enum TypeMvtStk{
+	ENTREE, SORTIE
+}
+
+entity CommandeFournisseur{
+	code String,
+	dateCommande Instant
+
+}
+
+entity Fournisseur{
+	 nom String,
+    prenom String,
+    mail String,
+    numTel String,
+    photo ImageBlob
+}
+
+
+entity LigneCommandeClient{
+	quantite BigDecimal,
+    prixUnitaire BigDecimal
+
+
+}
+entity LigneCommandeFournisseur{
+	quantite BigDecimal,
+    prixUnitaire BigDecimal
+
+
+}
+
+entity CommandeClient{
+	code String,
+    dateCommande Instant
+
+}
+
+entity Client {
+    nom String,
+    prenom String,
+    mail String,
+    numTel String,
+    photo ImageBlob
+
+
+}
+
+entity LigneVente{
+	quantite BigDecimal,
+    prixUnitaire BigDecimal
+}
+entity Vente{
+	code String,
+    dateVente Instant,
+    commentaire String
+}
+
+entity Adresse{
+	adresse1 String,
+    adresse2 String,
+    ville String,
+    codePostal String,
+    pays String
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	Entreprise{personnel} to Personnel {entreprise},
+    Entreprise{article} to Article {entreprise},
+    Article{utilisateur} to MvtStk {entreprise},
+	Client{commandeClient} to CommandeClient{client},
+    Fournisseur{commandeFournisseur} to CommandeFournisseur{fournisseur},
+    CommandeClient{ligneCommandeClient} to LigneCommandeClient{commandeClient},
+    CommandeFournisseur{ligneCommandeFournisseur} to LigneCommandeFournisseur{commandeFournisseur},
+    Vente{ligneVente} to LigneVente{vente},
+    LigneCommandeClient{article} to Article{ligneCommandeClient},
+    LigneCommandeFournisseur{article} to Article{ligneCommandeFournisseur},
+    LigneVente{article} to Article{ligneVente},
+    Categorie{article} to Article{categorie},
+
+}
+
+relationship ManyToOne {
+    Entreprise{adresse} to Adresse,
+    Personnel{adresse} to Adresse,
+    Client{adresse} to Adresse,
+    Fournisseur{adresse} to Adresse,
+    Entreprise{adresse} to Adresse,
+}
+
+
+
+// Set pagination options
+paginate * with pagination
+
+// Use Data Transfer Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceClass
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

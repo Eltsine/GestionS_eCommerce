@@ -1,0 +1,89 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="article">
+      <h2 data-cy="articleDetailsHeading"><span jhiTranslate="gestionSApp.article.detail.title">Article</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ article.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.article.codeArticle">Code Article</span></dt>
+        <dd>
+          <span>{{ article.codeArticle }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.article.designation">Designation</span></dt>
+        <dd>
+          <span>{{ article.designation }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.article.prixUnitaireHT">Prix Unitaire HT</span></dt>
+        <dd>
+          <span>{{ article.prixUnitaireHT }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.article.prixUnitaireTtc">Prix Unitaire Ttc</span></dt>
+        <dd>
+          <span>{{ article.prixUnitaireTtc }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.article.tauxTva">Taux Tva</span></dt>
+        <dd>
+          <span>{{ article.tauxTva }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.article.photo">Photo</span></dt>
+        <dd>
+          <div *ngIf="article.photo">
+            <a (click)="openFile(article.photo, article.photoContentType)">
+              <img [src]="'data:' + article.photoContentType + ';base64,' + article.photo" style="max-width: 100%" alt="article image" />
+            </a>
+            {{ article.photoContentType }}, {{ byteSize(article.photo) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.article.entreprise">Entreprise</span></dt>
+        <dd>
+          <div *ngIf="article.entreprise">
+            <a [routerLink]="['/entreprise', article.entreprise?.id, 'view']">{{ article.entreprise?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.article.ligneCommandeClient">Ligne Commande Client</span></dt>
+        <dd>
+          <div *ngIf="article.ligneCommandeClient">
+            <a [routerLink]="['/ligne-commande-client', article.ligneCommandeClient?.id, 'view']">{{ article.ligneCommandeClient?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.article.ligneCommandeFournisseur">Ligne Commande Fournisseur</span></dt>
+        <dd>
+          <div *ngIf="article.ligneCommandeFournisseur">
+            <a [routerLink]="['/ligne-commande-fournisseur', article.ligneCommandeFournisseur?.id, 'view']">{{
+              article.ligneCommandeFournisseur?.id
+            }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.article.ligneVente">Ligne Vente</span></dt>
+        <dd>
+          <div *ngIf="article.ligneVente">
+            <a [routerLink]="['/ligne-vente', article.ligneVente?.id, 'view']">{{ article.ligneVente?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.article.categorie">Categorie</span></dt>
+        <dd>
+          <div *ngIf="article.categorie">
+            <a [routerLink]="['/categorie', article.categorie?.id, 'view']">{{ article.categorie?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/article', article.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

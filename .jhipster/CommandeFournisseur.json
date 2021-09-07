@@ -1,0 +1,37 @@
+{
+  "name": "CommandeFournisseur",
+  "fields": [
+    {
+      "fieldName": "code",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateCommande",
+      "fieldType": "Instant"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "ligneCommandeFournisseur",
+      "otherEntityRelationshipName": "commandeFournisseur",
+      "relationshipName": "ligneCommandeFournisseur"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "fournisseur",
+      "otherEntityRelationshipName": "commandeFournisseur",
+      "relationshipName": "fournisseur"
+    }
+  ],
+  "entityTableName": "commande_fournisseur",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210906091025"
+}

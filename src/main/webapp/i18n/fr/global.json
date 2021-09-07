@@ -1,12 +1,26 @@
 {
   "global": {
-    "title": "GestionS",
+    "title": "GestionStock",
     "browsehappy": "Vous utilisez un <strong>ancien</strong> navigateur. Veuillez <a href=\"http://browsehappy.com/?locale=fr\">mettre à jour votre navigateur</a> pour une meilleure expérience.",
     "menu": {
       "home": "Accueil",
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entités",
+        "personnel": "Personnel",
+        "entreprise": "Entreprise",
+        "article": "Article",
+        "categorie": "Categorie",
+        "mvtStk": "Mvt Stk",
+        "commandeFournisseur": "Commande Fournisseur",
+        "fournisseur": "Fournisseur",
+        "ligneCommandeClient": "Ligne Commande Client",
+        "ligneCommandeFournisseur": "Ligne Commande Fournisseur",
+        "commandeClient": "Commande Client",
+        "client": "Client",
+        "ligneVente": "Ligne Vente",
+        "vente": "Vente",
+        "adresse": "Adresse",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

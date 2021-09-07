@@ -1,0 +1,37 @@
+{
+  "name": "CommandeClient",
+  "fields": [
+    {
+      "fieldName": "code",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateCommande",
+      "fieldType": "Instant"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "ligneCommandeClient",
+      "otherEntityRelationshipName": "commandeClient",
+      "relationshipName": "ligneCommandeClient"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "client",
+      "otherEntityRelationshipName": "commandeClient",
+      "relationshipName": "client"
+    }
+  ],
+  "entityTableName": "commande_client",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210906091029"
+}

@@ -1,0 +1,141 @@
+<div>
+  <h2 id="page-heading" data-cy="PersonnelHeading">
+    <span jhiTranslate="gestionSApp.personnel.home.title">Personnel</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="gestionSApp.personnel.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-personnel"
+        [routerLink]="['/personnel/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="gestionSApp.personnel.home.createLabel"> Create a new Personnel </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="personnel?.length === 0">
+    <span jhiTranslate="gestionSApp.personnel.home.notFound">No personnel found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="personnel && personnel.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr class="text-basic" jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="nom"><span jhiTranslate="gestionSApp.personnel.nom">Nom</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="prenom">
+            <span jhiTranslate="gestionSApp.personnel.prenom">Prenom</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dateNaissance">
+            <span jhiTranslate="gestionSApp.personnel.dateNaissance">Date Naissance</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="email">
+            <span jhiTranslate="gestionSApp.personnel.email">Email</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="motDePass">
+            <span jhiTranslate="gestionSApp.personnel.motDePass">Mot De Pass</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="photo">
+            <span jhiTranslate="gestionSApp.personnel.photo">Photo</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="adresse.id">
+            <span jhiTranslate="gestionSApp.personnel.adresse">Adresse</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="entreprise.id">
+            <span jhiTranslate="gestionSApp.personnel.entreprise">Entreprise</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody class="text-basic">
+        <tr *ngFor="let personnel of personnel; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/personnel', personnel.id, 'view']">{{ personnel.id }}</a>
+          </td>
+          <td>{{ personnel.nom }}</td>
+          <td>{{ personnel.prenom }}</td>
+          <td>{{ personnel.dateNaissance | formatMediumDatetime }}</td>
+          <td>{{ personnel.email }}</td>
+          <td>{{ personnel.motDePass }}</td>
+          <td>
+            <a *ngIf="personnel.photo" (click)="openFile(personnel.photo, personnel.photoContentType)">
+              <img
+                [src]="'data:' + personnel.photoContentType + ';base64,' + personnel.photo"
+                style="max-height: 30px"
+                alt="personnel image"
+              />
+            </a>
+            <span *ngIf="personnel.photo">{{ personnel.photoContentType }}, {{ byteSize(personnel.photo) }}</span>
+          </td>
+          <td>
+            <div *ngIf="personnel.adresse">
+              <a [routerLink]="['/adresse', personnel.adresse?.id, 'view']">{{ personnel.adresse?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="personnel.entreprise">
+              <a [routerLink]="['/entreprise', personnel.entreprise?.id, 'view']">{{ personnel.entreprise?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/personnel', personnel.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/personnel', personnel.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(personnel)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="personnel && personnel.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity MvtStk.
+    -->
+    <changeSet id="20210906091024-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="entreprise_id"
+                                 baseTableName="mvt_stk"
+                                 constraintName="fk_mvt_stk__entreprise_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="article"/>
+    </changeSet>
+</databaseChangeLog>

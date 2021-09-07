@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity LigneCommandeClient.
+    -->
+    <changeSet id="20210906091027-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="commande_client_id"
+                                 baseTableName="ligne_commande_client"
+                                 constraintName="fk_ligne_commande_client__commande_client_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="commande_client"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="mvtStk">
+      <h2 data-cy="mvtStkDetailsHeading"><span jhiTranslate="gestionSApp.mvtStk.detail.title">Mvt Stk</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ mvtStk.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.mvtStk.dateMvt">Date Mvt</span></dt>
+        <dd>
+          <span>{{ mvtStk.dateMvt | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.mvtStk.quantite">Quantite</span></dt>
+        <dd>
+          <span>{{ mvtStk.quantite }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.mvtStk.typeMvtStk">Type Mvt Stk</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'gestionSApp.TypeMvtStk.' + mvtStk.typeMvtStk }}">{{ mvtStk.typeMvtStk }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.mvtStk.entreprise">Entreprise</span></dt>
+        <dd>
+          <div *ngIf="mvtStk.entreprise">
+            <a [routerLink]="['/article', mvtStk.entreprise?.id, 'view']">{{ mvtStk.entreprise?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/mvt-stk', mvtStk.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

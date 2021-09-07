@@ -1,0 +1,35 @@
+{
+  "gestionSApp": {
+    "article": {
+      "home": {
+        "title": "Articles",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Article",
+        "createOrEditLabel": "Créer ou éditer un Article",
+        "notFound": "Aucun Article trouvé"
+      },
+      "created": "Un nouveau Article a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Article avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Article avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Article {{ id }} ?"
+      },
+      "detail": {
+        "title": "Article"
+      },
+      "id": "ID",
+      "codeArticle": "Code Article",
+      "designation": "Designation",
+      "prixUnitaireHT": "Prix Unitaire HT",
+      "prixUnitaireTtc": "Prix Unitaire Ttc",
+      "tauxTva": "Taux Tva",
+      "photo": "Photo",
+      "utilisateur": "Utilisateur",
+      "entreprise": "Entreprise",
+      "ligneCommandeClient": "Ligne Commande Client",
+      "ligneCommandeFournisseur": "Ligne Commande Fournisseur",
+      "ligneVente": "Ligne Vente",
+      "categorie": "Categorie"
+    }
+  }
+}

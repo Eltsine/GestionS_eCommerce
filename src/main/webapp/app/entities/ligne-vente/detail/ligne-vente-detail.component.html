@@ -1,0 +1,42 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="ligneVente">
+      <h2 data-cy="ligneVenteDetailsHeading"><span jhiTranslate="gestionSApp.ligneVente.detail.title">Ligne Vente</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ ligneVente.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.ligneVente.quantite">Quantite</span></dt>
+        <dd>
+          <span>{{ ligneVente.quantite }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.ligneVente.prixUnitaire">Prix Unitaire</span></dt>
+        <dd>
+          <span>{{ ligneVente.prixUnitaire }}</span>
+        </dd>
+        <dt><span jhiTranslate="gestionSApp.ligneVente.vente">Vente</span></dt>
+        <dd>
+          <div *ngIf="ligneVente.vente">
+            <a [routerLink]="['/vente', ligneVente.vente?.id, 'view']">{{ ligneVente.vente?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/ligne-vente', ligneVente.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

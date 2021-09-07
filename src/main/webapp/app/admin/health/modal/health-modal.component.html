@@ -1,4 +1,4 @@
-<div class="modal-header">
+<div class="modal-header bg-info">
   <h4 class="modal-title" id="showHealthLabel" *ngIf="health">
     {{ 'health.indicator.' + health.key | translate }}
   </h4>
@@ -8,7 +8,7 @@
   </button>
 </div>
 
-<div class="modal-body pad">
+<div class="modal-body pad bg-white">
   <div *ngIf="health">
     <h5 jhiTranslate="health.details.properties">Properties</h5>
 

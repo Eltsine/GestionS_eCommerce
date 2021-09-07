@@ -1,0 +1,110 @@
+<div>
+  <h2 id="page-heading" data-cy="CommandeFournisseurHeading">
+    <span jhiTranslate="gestionSApp.commandeFournisseur.home.title">Commande Fournisseurs</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="gestionSApp.commandeFournisseur.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-commande-fournisseur"
+        [routerLink]="['/commande-fournisseur/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="gestionSApp.commandeFournisseur.home.createLabel"> Create a new Commande Fournisseur </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="commandeFournisseurs?.length === 0">
+    <span jhiTranslate="gestionSApp.commandeFournisseur.home.notFound">No commandeFournisseurs found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="commandeFournisseurs && commandeFournisseurs.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead class="text-basic">
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="code">
+            <span jhiTranslate="gestionSApp.commandeFournisseur.code">Code</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dateCommande">
+            <span jhiTranslate="gestionSApp.commandeFournisseur.dateCommande">Date Commande</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="fournisseur.id">
+            <span jhiTranslate="gestionSApp.commandeFournisseur.fournisseur">Fournisseur</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody class="text-basic">
+        <tr *ngFor="let commandeFournisseur of commandeFournisseurs; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/commande-fournisseur', commandeFournisseur.id, 'view']">{{ commandeFournisseur.id }}</a>
+          </td>
+          <td>{{ commandeFournisseur.code }}</td>
+          <td>{{ commandeFournisseur.dateCommande | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="commandeFournisseur.fournisseur">
+              <a [routerLink]="['/fournisseur', commandeFournisseur.fournisseur?.id, 'view']">{{ commandeFournisseur.fournisseur?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/commande-fournisseur', commandeFournisseur.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/commande-fournisseur', commandeFournisseur.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(commandeFournisseur)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="commandeFournisseurs && commandeFournisseurs.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>
