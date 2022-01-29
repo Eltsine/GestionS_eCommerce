@@ -3,19 +3,24 @@
     <span jhiTranslate="gestionSApp.article.home.title">Articles</span>
 
     <div class="d-flex justify-content-end">
-      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
-        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span jhiTranslate="gestionSApp.article.home.refreshListLabel">Refresh List</span>
-      </button>
+      <!--      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">-->
+      <!--        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>-->
+      <!--        <span jhiTranslate="gestionSApp.article.home.refreshListLabel">Refresh List</span>-->
+      <!--      </button>-->
 
       <button
+        nbButton
         id="jh-create-entity"
+        status="primary"
+        size="small"
+        class="p-2"
         data-cy="entityCreateButton"
-        class="btn btn-primary jh-create-entity create-article"
         [routerLink]="['/article/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="gestionSApp.article.home.createLabel"> Create a new Article </span>
+        <nb-icon icon=""></nb-icon>
+
+        <span>Nouveau</span>
       </button>
     </div>
   </h2>
@@ -32,50 +37,44 @@
     <table class="table table-striped" aria-describedby="page-heading">
       <thead class="text-basic">
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="codeArticle">
-            <span jhiTranslate="gestionSApp.article.codeArticle">Code Article</span> <fa-icon icon="sort"></fa-icon>
-          </th>
+          <!--        <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>-->
+          <th scope="col" jhiSortBy="codeArticle"><span>Code Article</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="designation">
             <span jhiTranslate="gestionSApp.article.designation">Designation</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="prixUnitaireHT">
-            <span jhiTranslate="gestionSApp.article.prixUnitaireHT">Prix Unitaire HT</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="prixUnitaireTtc">
-            <span jhiTranslate="gestionSApp.article.prixUnitaireTtc">Prix Unitaire Ttc</span> <fa-icon icon="sort"></fa-icon>
-          </th>
+          <th scope="col" jhiSortBy="prixUnitaireHT"><span>Prix HT</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="prixUnitaireTtc"><span>Prix TTC</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="tauxTva">
-            <span jhiTranslate="gestionSApp.article.tauxTva">Taux Tva</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="gestionSApp.article.tauxTva">TVA</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="photo"><span jhiTranslate="gestionSApp.article.photo">Photo</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="entreprise.id">
-            <span jhiTranslate="gestionSApp.article.entreprise">Entreprise</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="ligneCommandeClient.id">
-            <span jhiTranslate="gestionSApp.article.ligneCommandeClient">Ligne Commande Client</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="ligneCommandeFournisseur.id">
-            <span jhiTranslate="gestionSApp.article.ligneCommandeFournisseur">Ligne Commande Fournisseur</span>
-            <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="ligneVente.id">
-            <span jhiTranslate="gestionSApp.article.ligneVente">Ligne Vente</span> <fa-icon icon="sort"></fa-icon>
-          </th>
+          <!--        <th scope="col" jhiSortBy="entreprise.id">-->
+          <!--          <span jhiTranslate="gestionSApp.article.entreprise">Entreprise</span> <fa-icon icon="sort"></fa-icon>-->
+          <!--        </th>-->
+          <!--        <th scope="col" jhiSortBy="ligneCommandeClient.id">-->
+          <!--          <span jhiTranslate="gestionSApp.article.ligneCommandeClient">Ligne Commande Client</span> <fa-icon icon="sort"></fa-icon>-->
+          <!--        </th>-->
+          <!--        <th scope="col" jhiSortBy="ligneCommandeFournisseur.id">-->
+          <!--          <span jhiTranslate="gestionSApp.article.ligneCommandeFournisseur">Ligne Commande Fournisseur</span>-->
+          <!--          <fa-icon icon="sort"></fa-icon>-->
+          <!--        </th>-->
+          <!--        <th scope="col" jhiSortBy="ligneVente.id">-->
+          <!--          <span jhiTranslate="gestionSApp.article.ligneVente">Ligne Vente</span> <fa-icon icon="sort"></fa-icon>-->
+          <!--        </th>-->
           <th scope="col" jhiSortBy="categorie.id">
             <span jhiTranslate="gestionSApp.article.categorie">Categorie</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col"></th>
+          <!--        <th scope="col"></th>-->
         </tr>
       </thead>
       <tbody class="text-basic">
-        <tr *ngFor="let article of articles; trackBy: trackId" data-cy="entityTable">
-          <td>
-            <a [routerLink]="['/article', article.id, 'view']">{{ article.id }}</a>
-          </td>
+        <tr *ngFor="let article of articles; trackBy: trackId" data-cy="entityTable" class="bg-white">
+          <!--        <td>-->
+          <!--          <a [routerLink]="['/article', article.id, 'view']">{{ article.id }}</a>-->
+          <!--        </td>-->
           <td>{{ article.codeArticle }}</td>
           <td>{{ article.designation }}</td>
-          <td>{{ article.prixUnitaireHT }}</td>
+          <td class="flex-fill">{{ article.prixUnitaireHT }}</td>
           <td>{{ article.prixUnitaireTtc }}</td>
           <td>{{ article.tauxTva }}</td>
           <td>
@@ -84,36 +83,36 @@
             </a>
             <span *ngIf="article.photo">{{ article.photoContentType }}, {{ byteSize(article.photo) }}</span>
           </td>
-          <td>
-            <div *ngIf="article.entreprise">
-              <a [routerLink]="['/entreprise', article.entreprise?.id, 'view']">{{ article.entreprise?.id }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="article.ligneCommandeClient">
-              <a [routerLink]="['/ligne-commande-client', article.ligneCommandeClient?.id, 'view']">{{
-                article.ligneCommandeClient?.id
-              }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="article.ligneCommandeFournisseur">
-              <a [routerLink]="['/ligne-commande-fournisseur', article.ligneCommandeFournisseur?.id, 'view']">{{
-                article.ligneCommandeFournisseur?.id
-              }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="article.ligneVente">
-              <a [routerLink]="['/ligne-vente', article.ligneVente?.id, 'view']">{{ article.ligneVente?.id }}</a>
-            </div>
-          </td>
+          <!--        <td>-->
+          <!--          <div *ngIf="article.entreprise">-->
+          <!--            <a [routerLink]="['/entreprise', article.entreprise?.id, 'view']">{{ article.entreprise?.id }}</a>-->
+          <!--          </div>-->
+          <!--        </td>-->
+          <!--        <td>-->
+          <!--          <div *ngIf="article.ligneCommandeClient">-->
+          <!--            <a [routerLink]="['/ligne-commande-client', article.ligneCommandeClient?.id, 'view']">{{-->
+          <!--              article.ligneCommandeClient?.id-->
+          <!--              }}</a>-->
+          <!--          </div>-->
+          <!--        </td>-->
+          <!--        <td>-->
+          <!--          <div *ngIf="article.ligneCommandeFournisseur">-->
+          <!--            <a [routerLink]="['/ligne-commande-fournisseur', article.ligneCommandeFournisseur?.id, 'view']">{{-->
+          <!--              article.ligneCommandeFournisseur?.id-->
+          <!--              }}</a>-->
+          <!--          </div>-->
+          <!--        </td>-->
+          <!--        <td>-->
+          <!--          <div *ngIf="article.ligneVente">-->
+          <!--            <a [routerLink]="['/ligne-vente', article.ligneVente?.id, 'view']">{{ article.ligneVente?.id }}</a>-->
+          <!--          </div>-->
+          <!--        </td>-->
           <td>
             <div *ngIf="article.categorie">
               <a [routerLink]="['/categorie', article.categorie?.id, 'view']">{{ article.categorie?.id }}</a>
             </div>
           </td>
-          <td class="text-right">
+          <div class="text-right">
             <div class="btn-group">
               <button
                 type="submit"
@@ -126,21 +125,24 @@
               </button>
 
               <button
+                class="p-2"
+                nbButton
+                outline
+                status="primary"
                 type="submit"
                 [routerLink]="['/article', article.id, 'edit']"
-                class="btn btn-primary btn-sm"
                 data-cy="entityEditButton"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
               </button>
 
-              <button type="submit" (click)="delete(article)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+              <button type="submit" nbButton outline status="danger" (click)="delete(article)" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
               </button>
             </div>
-          </td>
+          </div>
         </tr>
       </tbody>
     </table>
@@ -164,3 +166,120 @@
     </div>
   </div>
 </div>
+
+<!--Partie2-->
+
+<!--<div class="col">-->
+<div class="row m-3">
+  <div class="col-md-8">
+    <h2>Liste des articles</h2>
+  </div>
+  <div class="col-md-4 text-right">
+    <!--Bouton action-->
+    <div class="d-flex">
+      <div class="p-2 flex-fill">
+        <button nbButton status="warning" size="small" class="p-2"><i class="fas fa-cloud-upload-alt"></i>&nbsp; Importer</button>
+      </div>
+
+      <div class="p-2 flex-fill">
+        <button nbButton status="success" size="small" class="p-2">
+          <fa-icon icon="download"></fa-icon>
+
+          Exporter
+        </button>
+      </div>
+
+      <div class="p-2 flex-fill">
+        <button
+          nbButton
+          id="jh-create-entity"
+          status="primary"
+          size="small"
+          class="p-2"
+          data-cy="entityCreateButton"
+          [routerLink]="['/article/new']"
+        >
+          <fa-icon icon="plus"></fa-icon>
+          <nb-icon icon=""></nb-icon>
+
+          <!--            fas fa-dollar-sign-->
+          <span>Nouveau</span>
+        </button>
+      </div>
+    </div>
+    <!--Fin Bouton action-->
+  </div>
+</div>
+
+<div class="col-m-3">
+  <!--    <sdetails-->
+  <div class="row mb-1 mt-1 mr-0 custom-border bg-white">
+    <div class="col-md-1 custom-border-right p-1 text-center">
+      <img src="../../content/images/product.png" width="90px" height="90px" />
+    </div>
+    <!--Details articles-->
+    <div class="col-md-5 custom-border-right mb-1 mt-1">
+      <div class="col">
+        <div class="row">
+          <div class="md-2"><i class="fas fa-info-circle blue-color"></i></div>
+          <div>code article</div>
+        </div>
+
+        <div class="row">
+          <div class="mr-2"><i class="fas fa-info-circle blue-color"></i></div>
+          <div>Designation</div>
+        </div>
+
+        <div class="row">
+          <div class="mr-2"><i class="fas fa-dollar-sign blue-color"></i></div>
+          <div>Prix HT</div>
+        </div>
+
+        <div class="row">
+          <div class="mr-2"><i class="fas fa-dollar-sign blue-color"></i></div>
+          <div>Prix TTC</div>
+        </div>
+      </div>
+    </div>
+    <!--Details categories-->
+    <div class="col-md-3 custom-border-right mb-1 mt-1">
+      <div class="row">
+        <div class="col-md-2">
+          <i class="fas fa-flag-checkered blue-color"></i>
+        </div>
+
+        <div class="col-md-10">
+          <div class="row">
+            <div class="col-md-12">Code categorie</div>
+            <div class="col-md-12">Description categorie</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Boutons actions-->
+    <div class="col-md-3 m-0 custom-border-right mb-1 mt-1">
+      <div class="row mr-2">
+        <div class="col-md-4 p-0">
+          <button type="button" class="btn btn-link text-basic"><i class="fas fa-pencil-alt"></i>&nbsp;Modifier</button>
+        </div>
+        <div class="col-md-4 p-0">
+          <button type="button" class="btn btn-link text-basic"><i class="fas fa-trash-alt"></i>&nbsp;Supprimer</button>
+        </div>
+        <div class="col-md-4">
+          <button type="button" class="btn btn-link text-basic"><i class="fas fa-list-alt"></i>&nbsp;Details</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--    <fin details-->
+</div>
+
+<div class="row mb-3">
+  <div class="col-md-12 text-center">
+    <!--      <app-pagination></app-pagination>-->
+  </div>
+</div>
+
+<!--</div>-->

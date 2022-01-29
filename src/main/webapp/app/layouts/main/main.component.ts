@@ -4,12 +4,14 @@ import { Router, ActivatedRouteSnapshot, NavigationEnd } from '@angular/router';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import * as dayjs from 'dayjs';
 import { NbSidebarService } from '@nebular/theme';
+import { ChangeDetectionStrategy } from '@angular/core';
 
 import { AccountService } from 'app/core/auth/account.service';
 
 @Component({
   selector: 'jhi-main',
   templateUrl: './main.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainComponent implements OnInit {
   private renderer: Renderer2;

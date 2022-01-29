@@ -39,6 +39,16 @@ Generic styles
 ========================================================================== */
 
 /* other generic styles */
+.custom-border {
+  border: solid black;
+  border-radius: 10px;
+}
+.border-none {
+  border: none !important;
+}
+.custom-border-right {
+  border-right: 2px solid black !important;
+}
 
 .jh-card {
   padding: 1.5%;

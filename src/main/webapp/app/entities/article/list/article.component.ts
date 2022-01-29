@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
 import { IArticle } from '../article.model';
 
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants';
@@ -14,6 +13,7 @@ import { DataUtils } from 'app/core/util/data-util.service';
 @Component({
   selector: 'jhi-article',
   templateUrl: './article.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArticleComponent implements OnInit {
   articles?: IArticle[];

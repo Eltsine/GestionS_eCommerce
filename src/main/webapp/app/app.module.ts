@@ -28,20 +28,28 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
-import { NbLayoutModule, NbSidebarModule, NbThemeModule } from '@nebular/theme';
+import { NbAccordionModule, NbCardModule, NbIconModule, NbLayoutModule, NbSidebarModule, NbThemeModule } from '@nebular/theme';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 @NgModule({
   imports: [
     BrowserModule,
     SharedModule,
     HomeModule,
+    BrowserAnimationsModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     EntityRoutingModule,
     AppRoutingModule,
     // Set this to true to enable service worker (PWA)
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: false }),
     HttpClientModule,
+    NbAccordionModule,
+    NbEvaIconsModule,
+    NbIconModule,
+    NbCardModule,
     NgxWebstorageModule.forRoot({ prefix: 'jhi', separator: '-', caseSensitive: true }),
+    // Set this nebular installation
     NbThemeModule.forRoot(),
     NbLayoutModule,
     NbSidebarModule.forRoot(),

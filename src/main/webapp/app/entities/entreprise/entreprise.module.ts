@@ -10,5 +10,6 @@ import { EntrepriseRoutingModule } from './route/entreprise-routing.module';
   imports: [SharedModule, EntrepriseRoutingModule],
   declarations: [EntrepriseComponent, EntrepriseDetailComponent, EntrepriseUpdateComponent, EntrepriseDeleteDialogComponent],
   entryComponents: [EntrepriseDeleteDialogComponent],
+  exports: [EntrepriseComponent],
 })
 export class EntrepriseModule {}

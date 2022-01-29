@@ -131,6 +131,13 @@ export class ArticleUpdateComponent implements OnInit {
     return item.id!;
   }
 
+  calculerTTC(): void {
+    const taux: number = this.editForm.get(['tauxTva'])!.value;
+    const ev: number = this.editForm.get(['prixUnitaireHT'])!.value;
+    const ht = ev + (ev * taux) / 100;
+    this.editForm.patchValue({ prixUnitaireTtc: ht });
+  }
+
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IArticle>>): void {
     result.pipe(finalize(() => this.onSaveFinalize())).subscribe(
       () => this.onSaveSuccess(),

@@ -19,9 +19,42 @@
     <a href="#" (click)="toggle()"><i class="nb-menu"></i></a>
   </nb-layout-header>
 
-  <nb-sidebar></nb-sidebar>
+  <nb-sidebar>
+    <nb-accordion>
+      <nb-accordion-item>
+        <nb-accordion-item-header> TABLEAU DE BORD </nb-accordion-item-header>
+        <nb-accordion-item-body> Vue d'Ensemble </nb-accordion-item-body>
+        <nb-accordion-item-body> Statistique </nb-accordion-item-body>
+      </nb-accordion-item>
 
-  <nb-layout-column class="colored-column-basic">
+      <nb-accordion-item>
+        <nb-accordion-item-header> ARTICLES </nb-accordion-item-header>
+
+        <nb-accordion-item-body> Articles </nb-accordion-item-body>
+        <nb-accordion-item-body> Mouvement de Stock </nb-accordion-item-body>
+      </nb-accordion-item>
+
+      <nb-accordion-item>
+        <nb-accordion-item-header> CLIENTS </nb-accordion-item-header>
+        <nb-accordion-item-body> Clients </nb-accordion-item-body>
+        <nb-accordion-item-body> Commandes Clients </nb-accordion-item-body>
+      </nb-accordion-item>
+
+      <nb-accordion-item>
+        <nb-accordion-item-header> FOURNISSEURS </nb-accordion-item-header>
+        <nb-accordion-item-body> Fournisseurs </nb-accordion-item-body>
+        <nb-accordion-item-body> Commandes Fournisseurs </nb-accordion-item-body>
+      </nb-accordion-item>
+
+      <nb-accordion-item>
+        <nb-accordion-item-header> PARAMETRAGES </nb-accordion-item-header>
+        <nb-accordion-item-body> Categories </nb-accordion-item-body>
+        <nb-accordion-item-body> Utilisateurs </nb-accordion-item-body>
+      </nb-accordion-item>
+    </nb-accordion>
+  </nb-sidebar>
+
+  <nb-layout-column class="colored-column-dark">
     <router-outlet></router-outlet>
   </nb-layout-column>
 </nb-layout>

@@ -13,7 +13,6 @@ export type EntityArrayResponseType = HttpResponse<IArticle[]>;
 @Injectable({ providedIn: 'root' })
 export class ArticleService {
   protected resourceUrl = this.applicationConfigService.getEndpointFor('api/articles');
-
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
   create(article: IArticle): Observable<EntityResponseType> {
